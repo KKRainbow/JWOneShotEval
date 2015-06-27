@@ -73,9 +73,11 @@ class Login extends CI_Controller
         }
 
         $this->_getLoginModel($which);
-        $this->login->loginPost($_POST['username'],
+        $res = $this->login->loginPost($_POST['username'],
             $_POST['password'],
             $_POST['code']);
+
+        echo $res;
     }
 
     public function logout()

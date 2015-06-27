@@ -12,6 +12,7 @@ class Jiaowu extends CI_Model{
     private static $url_teachers_list = "/xspj/pjkc";
     private static $url_insert_teacher = "/xspj/insertPj";
     private static $url_update_teacher = "/xspj/updatePj";
+    private static $url_save_course = "/xspj/updateTj";
     public function testHasLoggedIn()
     {
         $ch = $this->connection->getCurlPointer();
@@ -218,5 +219,26 @@ class Jiaowu extends CI_Model{
         curl_setopt($ch,CURLOPT_POSTFIELDS,$teacher['pjform']);
 
         return curl_exec($ch);
+    }
+
+    //真怕教务又不在服务端检查教师是否全部评价，所以我们来做这事把= =
+    public function saveCourse(&$course)
+    {
+        if(!isset($course['form']['JXBH']))return false;
+        if(count($course['teachers']) == 0)return false;
+        foreach($course['teachers'] as &$t)
+        {
+            if($t['sfpj'] !== "1")
+            {
+                return false;
+            }
+        }
+
+        $ch = $this->connection->getCurlPointer();
+        curl_setopt($ch,CURLOPT_URL,$_SESSION['root'] . self::$url_save_course
+            . "?rwh=" . $course['form']['JXBH']);
+        curl_exec($ch);
+
+        return curl_getinfo($ch,CURLINFO_HTTP_CODE) == 200;
     }
 }

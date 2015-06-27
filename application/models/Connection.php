@@ -102,4 +102,9 @@ class Connection extends CI_Model{
             }
         }
     }
+
+    public function getCookieContent()
+    {
+        return file_get_contents(COOKIE_DIR . $_SESSION['hash']);
+    }
 }

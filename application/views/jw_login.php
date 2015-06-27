@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<form action="/index.php/login/loginpost" method="post">
+<form action="/index.php/login/loginpost/1" method="post">
 <table>
     <tr>
         <td>
@@ -30,7 +30,7 @@
         </td>
         <td>
             <input id="code" name="code" type="text" width="100px"/>
-            <img src="/index.php/login/captcha"/>
+            <img src="/index.php/login/captcha/1"/>
         </td>
     </tr>
     <tr>
