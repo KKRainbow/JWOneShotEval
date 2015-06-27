@@ -78,7 +78,6 @@ class Unitedlogin extends CI_Model{
         }
         else
         {
-            echo "登陆成功！";
             return true;
         }
     }

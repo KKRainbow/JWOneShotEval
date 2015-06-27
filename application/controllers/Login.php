@@ -40,6 +40,7 @@ class Login extends CI_Controller
             //已经登录
             //TODO 跳转到管理首页
             echo "您已经登录";
+            redirect("evaluate");
             exit();
         }
         $this->load->view('jw_login');
