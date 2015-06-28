@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/js/theme/smothness.css"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
     <script src="/static/js/external/jquery/jquery.js"></script>
     <script src="/static/js/jquery-ui.js"></script>
     <title>登录教务系统</title>
 </head>
 <body>
 <style>
-    body{
-        font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
-        font-size:13px;
-    }
     #loginform
     {
         width: 400px;

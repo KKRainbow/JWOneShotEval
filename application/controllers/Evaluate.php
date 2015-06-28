@@ -17,15 +17,18 @@ class Evaluate extends CI_Controller{
     {
         if(!$this->jiaowu->testHasLoggedIn())
         {
-            echo "您还未登录";
+            redirect("login");
             exit();
         }
     }
     public function index()
     {
         $this->_test();
+        //获得course，并转化为json
+        $jw = $this->jiaowu;
+        $data['course'] = json_encode($jw->getCourseArray());
 
-
+        $this->load->view("jw_pj",$data);
     }
 
     public function evalall()

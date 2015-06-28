@@ -35,7 +35,7 @@ class Jiaowu extends CI_Model{
      */
     private $courses;
 
-    private function _getTeacherOfCourse(&$course)
+    public function getTeacherOfCourse(&$course)
     {
         if(!isset($course))
         {
@@ -107,14 +107,19 @@ class Jiaowu extends CI_Model{
         //<input type="button" class="btn2"
         // idvalue="{'SKJS':'08297@张东凤','KCDM':'F27D3130','JXBH':'2014-2015-2-F27D3130-1','SFPJ':'0'}"
         // onclick="javascript:pjkc(this);" value="评价"/>
+
+//        <tr class="trbgfff">
+//    <td>B08D3010</td>
+//    <td>经济管理</td>
         if(!preg_match_all("/<input type=\"button\" class=\"btn2\" idvalue=\"([^\"]*)\" onclick/",
             $course_html,$matches))
         {
             echo "没有可以评价的课程";
         }
 
+
         //匹配到的就是json字符串。
-        foreach($matches[1] as $json_str)
+        foreach($matches[1] as $index => $json_str)
         {
             //php中json必须为单引号
             $j = preg_replace("/'/","\"",$json_str);
@@ -127,7 +132,20 @@ class Jiaowu extends CI_Model{
             $course = array(
                 "form" => $json
             );
-            $this->_getTeacherOfCourse($course);
+
+            $name = null;
+            //课程名称
+            if(preg_match("/<td>". $json['KCDM'] ."<\\/td>[^<]*<td>([^<]*)<\\/td>/s"
+                ,$course_html,$name))
+            {
+                $course['form']['name'] = $name[1];
+            }
+            else
+            {
+                 $course['form']['name']  = "未命名";
+            }
+
+//            $this->getTeacherOfCourse($course);
             $this->courses[]  = $course;
         }
         return $this->courses;
