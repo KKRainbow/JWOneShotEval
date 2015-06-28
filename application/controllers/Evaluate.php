@@ -31,6 +31,26 @@ class Evaluate extends CI_Controller{
         $this->load->view("jw_pj",$data);
     }
 
+    /**
+     * @param $kcdm 课程代码
+     */
+    public function get_teachers($kcdm)
+    {
+        $c = $this->jiaowu->getCourseArray();
+        array_walk($c,function(&$item) use($kcdm)
+        {
+               if($item['form']['KCDM'] == $kcdm)
+               {
+                   if($this->jiaowu->getTeacherOfCourse($item))
+                   {
+                       echo json_encode($item['teachers']);
+                       exit();
+                   }
+                   exit("0");
+               }
+        });
+        echo false;
+    }
     public function evalall()
     {
         $this->_test();
@@ -40,6 +60,7 @@ class Evaluate extends CI_Controller{
 
         foreach($course as &$c)
         {
+            $jw->getTeacherOfCourse($c);
             foreach($c['teachers'] as &$t)
             {
                 $jw->evaluateTeacher($t);

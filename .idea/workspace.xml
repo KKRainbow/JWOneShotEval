@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="925ee9d6-78e9-442c-a8c2-2e593c7c10d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/common.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Evaluate.php" afterPath="$PROJECT_DIR$/application/controllers/Evaluate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Jiaowu.php" afterPath="$PROJECT_DIR$/application/models/Jiaowu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Login.php" afterPath="$PROJECT_DIR$/application/controllers/Login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/jw_login.php" afterPath="$PROJECT_DIR$/application/views/jw_login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/jw_pj.php" afterPath="$PROJECT_DIR$/application/views/jw_pj.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JWAutoEval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +34,8 @@
       <file leaf-file-name="Login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.6666665" vertical-offset="576" max-vertical-offset="1710">
-              <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+            <state vertical-scroll-proportion="-5.3333335" vertical-offset="1098" max-vertical-offset="1710">
+              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -65,8 +64,8 @@
       <file leaf-file-name="Evaluate.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Evaluate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.0" vertical-offset="252" max-vertical-offset="918">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state vertical-scroll-proportion="-24.0" vertical-offset="378" max-vertical-offset="1296">
+              <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -75,9 +74,11 @@
       <file leaf-file-name="jw_pj.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/jw_pj.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.030050084" vertical-offset="54" max-vertical-offset="702">
-              <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-              <folding />
+            <state vertical-scroll-proportion="0.8690909" vertical-offset="3559" max-vertical-offset="4176">
+              <caret line="211" column="45" selection-start-line="211" selection-start-column="45" selection-end-line="211" selection-end-column="45" />
+              <folding>
+                <marker date="1435464533253" expanded="true" signature="3322:3335" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,18 +89,6 @@
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jw_login.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/jw_login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="3204">
-              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -117,9 +106,11 @@
       <file leaf-file-name="Jiaowu.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Jiaowu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.333333" vertical-offset="2214" max-vertical-offset="4716">
-              <caret line="148" column="39" selection-start-line="148" selection-start-column="39" selection-end-line="148" selection-end-column="39" />
-              <folding />
+            <state vertical-scroll-proportion="-58.851852" vertical-offset="1759" max-vertical-offset="5490">
+              <caret line="191" column="40" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
+              <folding>
+                <marker date="1435463966661" expanded="true" signature="1501:2544" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,13 +151,13 @@
         <option value="$PROJECT_DIR$/application/models/Unitedlogin.php" />
         <option value="$PROJECT_DIR$/static/js/jquery.js" />
         <option value="$PROJECT_DIR$/application/config/autoload.php" />
+        <option value="$PROJECT_DIR$/static/common.css" />
+        <option value="$PROJECT_DIR$/static/css/common.css" />
         <option value="$PROJECT_DIR$/application/controllers/Login.php" />
+        <option value="$PROJECT_DIR$/application/views/jw_login.php" />
         <option value="$PROJECT_DIR$/application/controllers/Evaluate.php" />
         <option value="$PROJECT_DIR$/application/models/Jiaowu.php" />
-        <option value="$PROJECT_DIR$/static/common.css" />
         <option value="$PROJECT_DIR$/application/views/jw_pj.php" />
-        <option value="$PROJECT_DIR$/application/views/jw_login.php" />
-        <option value="$PROJECT_DIR$/static/css/common.css" />
       </list>
     </option>
   </component>
@@ -247,7 +238,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Ji&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/models/Jiaowu.php&#10;ji&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/models/Jiaowu.php&#10;auto&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/config/autoload.php&#10;Login&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/controllers/Login.php&#10;autolo&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/config/autoload.php&#10;table&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/system/libraries/Table.php" />
+    <property name="SearchEverywhereHistoryKey" value="J&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/models/Jiaowu.php&#10;Eval&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/controllers/Evaluate.php&#10;Login.php&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/controllers/Login.php&#10;Ji&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/models/Jiaowu.php&#10;ji&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/models/Jiaowu.php&#10;auto&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/config/autoload.php&#10;Login&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/controllers/Login.php&#10;autolo&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/application/config/autoload.php&#10;table&#9;FILE&#9;file:///home/ssj/Project/JWAutoEval/system/libraries/Table.php" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -320,7 +311,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48430493" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48430493" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -348,7 +339,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="58" />
+      <option name="time" value="64" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -659,26 +650,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6666665" vertical-offset="576" max-vertical-offset="1710">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="30.0" vertical-offset="2286" max-vertical-offset="2628">
           <caret line="82" column="27" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/helpers/url_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2962963" vertical-offset="9566" max-vertical-offset="10350">
-          <caret line="531" column="13" selection-start-line="531" selection-start-column="13" selection-end-line="531" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -691,10 +666,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Evaluate.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0" vertical-offset="252" max-vertical-offset="918">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.3333335" vertical-offset="1098" max-vertical-offset="1710">
+          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/jw_login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30050084" vertical-offset="630" max-vertical-offset="3366">
+          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/helpers/url_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2962963" vertical-offset="9566" max-vertical-offset="10350">
+          <caret line="531" column="13" selection-start-line="531" selection-start-column="13" selection-end-line="531" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -707,29 +700,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/jw_login.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/Evaluate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="3204">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-24.0" vertical-offset="378" max-vertical-offset="1296">
+          <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Jiaowu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333" vertical-offset="2214" max-vertical-offset="4716">
-          <caret line="148" column="39" selection-start-line="148" selection-start-column="39" selection-end-line="148" selection-end-column="39" />
-          <folding />
+        <state vertical-scroll-proportion="-58.851852" vertical-offset="1759" max-vertical-offset="5490">
+          <caret line="191" column="40" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
+          <folding>
+            <marker date="1435463966661" expanded="true" signature="1501:2544" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/jw_pj.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030050084" vertical-offset="54" max-vertical-offset="702">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.8690909" vertical-offset="3559" max-vertical-offset="4176">
+          <caret line="211" column="45" selection-start-line="211" selection-start-column="45" selection-end-line="211" selection-end-column="45" />
+          <folding>
+            <marker date="1435464533253" expanded="true" signature="3322:3335" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -37,7 +37,7 @@
     }
 
 </style>
-<form action="/index.php/login/loginpost/0" method="post" onsubmit="login();return false;">
+<form action="login/loginpost/0" method="post" onsubmit="login();return false;">
     <div id="loginform">
         <table id="logintable" cellspacing="10px">
             <tr>
@@ -65,7 +65,7 @@
                     <input id="code" name="code" type="text" />
                 </td>
                 <td>
-                    <img id="captcha" src="/index.php/login/captcha/0"/>
+                    <img id="captcha" src="login/captcha/0"/>
                 </td>
             </tr>
             <tr>
@@ -136,7 +136,16 @@
             },
             function(data,status)
             {
-                alert(data);
+                if(data == "1")
+                {
+                    //登录成功
+                    //跳转
+                    window.location.href = "evaluate";
+                }
+                else
+                {
+                    //登录失败
+                }
             }
         );
     }
@@ -154,18 +163,18 @@
 
     $(function()
     {
-        $("#loginform").attr("action" , "/index.php/login/loginpost/" + 0);
-        $("#captcha").attr("src","/index.php/login/captcha/" + 0);
+        $("#loginform").attr("action" , "login/loginpost/" + 0);
+        $("#captcha").attr("src","login/captcha/" + 0);
         $("#entry0").click(function()
         {
-            $("#loginform").attr("action" , "/index.php/login/loginpost/" + 0);
-            $("#captcha").attr("src","/index.php/login/captcha/" + 0);
+            $("#loginform").attr("action" , "login/loginpost/" + 0);
+            $("#captcha").attr("src","login/captcha/" + 0);
 
         }).select();
         $("#entry1").click(function()
         {
-            $("#loginform").attr("action" , "/index.php/login/loginpost/" + 1);
-            $("#captcha").attr("src","/index.php/login/captcha/" + 1);
+            $("#loginform").attr("action" , "login/loginpost/" + 1);
+            $("#captcha").attr("src","login/captcha/" + 1);
         });
     });
 </script>

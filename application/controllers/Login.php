@@ -84,6 +84,6 @@ class Login extends CI_Controller
     public function logout()
     {
         $this->connection->destroySession();
-        echo "退出成功";
+        redirect("login");
     }
 }

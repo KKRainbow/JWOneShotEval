@@ -10,6 +10,7 @@ class Jiaowu extends CI_Model{
     private static $url_test_login = "/login";
     private static $url_courses_list = "/xspj/queryPjkc";
     private static $url_teachers_list = "/xspj/pjkc";
+    private static $url_teacher_pj = "/xspj/pjTeacher";
     private static $url_insert_teacher = "/xspj/insertPj";
     private static $url_update_teacher = "/xspj/updatePj";
     private static $url_save_course = "/xspj/updateTj";
@@ -35,13 +36,52 @@ class Jiaowu extends CI_Model{
      */
     private $courses;
 
+    //如果没有被选择的，就填充0
+    private function _getTeacherPj(&$teacher)
+    {
+        $ch = $this->connection->getCurlPointer();
+        curl_setopt($ch,CURLOPT_URL,$_SESSION['root'].self::$url_teacher_pj);
+        curl_setopt($ch,CURLOPT_POST,true);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,http_build_query($teacher));
+        $html = curl_exec($ch);
+
+        $e = curl_error($ch);
+        $matches = null;
+        $ys = array_fill(0,7,0);
+        $ys[6] = "";
+
+        $teacher['pj'] = $ys;
+        if(preg_match_all("/<td>0\\d0(\\d)<\\/td>.*?<option value=\"0(\\d)\" selected/s",
+            $html,$matches))
+        {
+            $len = count($matches[1]);
+            foreach(range(0,$len-1) as $i)
+            {
+                $teacher['pj'][$matches[1][$i] - 1] = $matches[2][$i];
+            }
+        }
+        //获取评语
+        $pymatch = null;
+        if(
+            preg_match("/<td colspan=\"3\"><span>评语:<\\/span><span>([^<]*)<\\/span><\\/td>/s",$html,$pymatch)
+        ||
+            preg_match("/<td colspan=\"2\">评语:".
+                "<textarea id=\"pyxx\" name=\"pyxx\" rows=\"5\" cols=\"100\">([^<]*)<\\/textarea><\\/td>/s"
+                ,$html,$pymatch)
+        )
+        {
+            $teacher['pj'][6] = $pymatch[1];
+        }
+    }
+
     public function getTeacherOfCourse(&$course)
     {
         if(!isset($course))
         {
             $course["teachers"] = array();
-            return;
+            return false;
         }
+        $course["teachers"] = array();
 
 
         $ch = $this->connection->getCurlPointer();
@@ -89,10 +129,13 @@ class Jiaowu extends CI_Model{
                 ) = $params;
 
             //自定义字段
-            $t['skjs'] = $names[$index];
+            $t['skjs'] = $names[$index++];
+            //获取评价
+            $this->_getTeacherPj($t);
 
             $course['teachers'][] = $t;
         }
+        return true;
     }
     public function getCourseArray()
     {
