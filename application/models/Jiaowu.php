@@ -253,6 +253,7 @@ class Jiaowu extends CI_Model{
         //开始填写提交表单
         array_walk($teacher,function(&$item,$key) use (&$resform)
         {
+            if(gettype($item) == "array")return;
             $resform .= "&";
             $tmp = urlencode($item);
             $resform .= "$key=$tmp";

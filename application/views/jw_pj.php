@@ -9,9 +9,15 @@
     <title></title>
 </head>
 <style>
+    #courses
+    {
+        margin: 50px;
+    }
     .teacher_table
     {
         width: 100%;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 </style>
 <script>
@@ -205,11 +211,11 @@
                 } else {
                     previousX = currentX;
                     previousY = currentY;
-                    timeout = setTimeout( handler, 10 );
+                    timeout = setTimeout( handler, 100 );
                 }
             }
 
-            timeout = setTimeout( handler, 10 );
+            timeout = setTimeout( handler, 100 );
             target.bind({
                 mousemove: track,
                 mouseout: clear
@@ -223,5 +229,6 @@
 <div id="courses">
 
 </div>
+<div style="height: 500px"></div>
 </body>
 </html>
