@@ -188,7 +188,7 @@ class Jiaowu extends CI_Model{
                  $course['form']['name']  = "未命名";
             }
 
-//            $this->getTeacherOfCourse($course);
+            $this->getTeacherOfCourse($course);
             $this->courses[]  = $course;
         }
         return $this->courses;

@@ -2,16 +2,20 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/js/theme/smothness.css"/>
     <link rel="stylesheet" href="/static/css/common.css"/>
-    <script src="/static/js/external/jquery/jquery.js"></script>
-    <script src="/static/js/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/js/themes/icon.css">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-groupview.js"></script>
     <title></title>
 </head>
 <style>
     #courses
     {
-        margin: 50px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
     }
     .teacher_table
     {
@@ -19,216 +23,118 @@
         margin-top: 50px;
         margin-bottom: 50px;
     }
+    .course_btn
+    {
+        margin-right: 5px;
+    }
 </style>
 <script>
     var json = <?=$course?>;
-    function buildTeacherItem(teacher)
+    function buildTeacherItem(teacher,course)
     {
-        var pj = (teacher.sfpj == "1"?"(已评价)":"（未评价)");
-        var html =
-            "<tr>" +
-            "<td>"  +
-            teacher.skjs.split('@')[1] + pj +
-            "</td>"  +
-
-            "<td>"  +
-            teacher.pj[0] +
-            "</td>"  +
-
-            "<td>"  +
-            teacher.pj[1] +
-            "</td>"  +
-
-            "<td>"  +
-            teacher.pj[2] +
-            "</td>"  +
-
-            "<td>"  +
-            teacher.pj[3] +
-            "</td>"  +
-
-            "<td>"  +
-            teacher.pj[4] +
-            "</td>"  +
-
-            "<td>"  +
-            teacher.pj[5] +
-            "</td>"  +
-
-            "<td>"  +
-            teacher.pj[6] +
-            "</td>"  +
-
-            "</tr>";
-        return html;
-    }
-    function fillTeachers(ui)
-    {
-        var newPanel = ui.newPanel;
-        var newHeader = ui.newHeader;
-        if(typeof newPanel.get(0).loaded == 'undefined' || newPanel.get(0).loaded == false)
+        var s = teacher.skjs.split('@');
+        var row =
         {
-            //加载数据
-            var kcdm = newHeader.attr("id");
-            $.get(
-                "evaluate/get_teachers/" +  kcdm,
-                function(data,status)
-                {
-                    if(data != "0")
-                    {
-                        //删除原来的数据
-                        newPanel.find('table').find('tbody').children().remove();
-                        //返回的是Json string
-                        data = eval(data);
-                        var cdom = $("#" + kcdm);
-                        var course = cdom.attr("course");
-                        course.teachers = data;
-                        //构造教师列表
-
-                        var teacherPanel = $("#div_" + kcdm).find("tbody").get(0);
-                        for(index in data)
-                        {
-                            var h = buildTeacherItem(data[index]);
-                            console.log(data[index]);
-                            $(teacherPanel).append(
-                                h
-                            );
-                        }
-
-                        newPanel.get(0).loaded = true;
-                        newPanel.find('table').show();
-                        newPanel.find("div").remove();
-                    }
-                }
-            ).error(
-                function()
-                {
-
-                }
-            );
+            "sfpj" : teacher.sfpj == "1" ? "Y":"N",
+            "cname" : course.form.name,
+            "code" : s[0],
+            "tname" : s[1],
+            "pj1" : teacher.pj[0],
+            "pj2" : teacher.pj[1],
+            "pj3" : teacher.pj[2],
+            "pj4" : teacher.pj[3],
+            "pj5" : teacher.pj[4],
+            "pj6" : teacher.pj[5],
+            "py" : teacher.pj[6],
+            "teacher" : teacher,
+            "course" : course
         }
+        ;
+        console.log(row);
+        return row;
     }
-    $(function()
+    String.prototype.repeat = function(count)
     {
-        var courseTable = $("#courses");
-        for(var c in json)
-        {
-            var form = json[c].form;
-            console.log(form);
-
-            courseTable.append("<h3 id=\"" + form.KCDM + "\">" + form.name + "</h3>")
-                .append("<div id=\"div_" + form.KCDM + "\">"
-                + "</div>");
-
-            $("#"+ form.KCDM).attr("course",c);
-            $("#div_"+ form.KCDM).html(
-                "<table class=\"teacher_table\" style='display: none'>" +
-                "<thead>" +
-                "<tr>" +
-                "<td>" + "教师姓名" + "</td>" +
-                "<td>" + "评价1" + "</td>" +
-                "<td>" + "评价2" + "</td>" +
-                "<td>" + "评价3" + "</td>" +
-                "<td>" + "评价4" + "</td>" +
-                "<td>" + "评价5" + "</td>" +
-                "<td>" + "评价6" + "</td>" +
-                "<td width='260px'>" + "评语" + "</td>" +
-                "</tr>" +
-                "</thead>" +
-                "<tbody>" +
-                "</tbody>" +
-                "</table>" +
-                "<div>" +
-                    "请稍后，正在加载" +
-                "</div>"
-            );
+        if (count < 1) return '';
+        var result = '', pattern = this.valueOf();
+        while (count > 1) {
+            if (count & 1) result += pattern;
+            count >>= 1, pattern += pattern;
         }
+        return result + pattern;
+    };
+    $(function(){
+       for(var index in json)
+       {
+           var course = json[index];
+           for(var i in course.teachers)
+           {
+               var item = buildTeacherItem(course.teachers[i],course);
+               $("#grid").datagrid(
+                   'appendRow',item
+               );
+           }
+       }
 
-        courseTable.accordion(
+        $(".course_btn").linkbutton(
             {
-                heightStyle : "content",
-                event: "click hoverintent",
-                activate : function(event,ui)
-                {
-                    fillTeachers(ui);
-                },
-                create :function(event,ui)
-                {
-                    ui.newPanel = ui.panel;
-                    ui.newHeader = ui.header;
-                    fillTeachers(ui);
-                }
+                iconCls : 'icon-save'
             }
         );
+
+        var data = $("#grid").datagrid('getData');
+        console.log(data.rows[1].sfpj = 'a');
+        $("#grid").datagrid('loadData',data.rows);
     });
-
-    $.event.special.hoverintent = {
-        setup: function() {
-            $( this ).bind( "mouseover", jQuery.event.special.hoverintent.handler );
-        },
-        teardown: function() {
-            $( this ).unbind( "mouseover", jQuery.event.special.hoverintent.handler );
-        },
-        handler: function( event ) {
-            var currentX, currentY, timeout,
-                args = arguments,
-                target = $( event.target ),
-                previousX = event.pageX,
-                previousY = event.pageY;
-
-            function track( event ) {
-                currentX = event.pageX;
-                currentY = event.pageY;
-            }
-
-            function clear() {
-                target
-                    .unbind( "mousemove", track )
-                    .unbind( "mouseout", clear );
-                clearTimeout( timeout );
-            }
-
-            function handler() {
-                var prop,
-                    orig = event;
-
-                if ( ( Math.abs( previousX - currentX ) +
-                    Math.abs( previousY - currentY ) ) < 7 ) {
-                    clear();
-
-                    event = $.Event( "hoverintent" );
-                    for ( prop in orig ) {
-                        if ( !( prop in event ) ) {
-                            event[ prop ] = orig[ prop ];
-                        }
-                    }
-                    // Prevent accessing the original event since the new event
-                    // is fired asynchronously and the old event is no longer
-                    // usable (#6028)
-                    delete event.originalEvent;
-
-                    target.trigger( event );
-                } else {
-                    previousX = currentX;
-                    previousY = currentY;
-                    timeout = setTimeout( handler, 100 );
-                }
-            }
-
-            timeout = setTimeout( handler, 100 );
-            target.bind({
-                mousemove: track,
-                mouseout: clear
-            });
-        }
-    };
 </script>
 <body>
-<a href="login/logout">退出登录</a>
-<a href="evaluate/evalall">一键评价</a>
-<div id="courses">
+<a href="/index.php/login/logout">退出登录</a>
+<a href="/index.php/evaluate/evalall" class="easyui-linkbutton">一键评价</a>
 
+<div id="courses">
+    <table id="grid" class="easyui-datagrid" title="教师列表"
+           style="height: 800px"
+        data-options="
+            fitColumns:true,
+            singleSelect:true,
+            groupField : 'cname',
+            idField : 'code',
+            view : groupview,
+            groupFormatter:function(value,rows){
+            console.log(rows);
+            var pj = rows[0].course.form.SFPJ == '1'?
+            '<font color=\'red\'>课程已评价    </font>'
+            :
+            '';
+            var disable = rows[0].course.form.SFPJ == '1'?
+                        ' style=\'display : none;\' ' : '';
+            var btn =
+            '<a href=\'javascript:\' class=\'course_btn\''+disable+'>保存课程评价（无法撤销）</a>';
+            var text = pj + value + ' - ' + rows.length + ' Item(s)';
+            return btn + text;
+            }
+        "
+        >
+
+        <thead>
+        <tr>
+            <!--是否评价-->
+            <th data-options="field:'sfpj'">已评价</th>
+            <!--课程名称-->
+            <th data-options="field:'cname'">课程名称</th>
+            <!--上课教师-->
+            <th data-options="field:'tname'">上课教师</th>
+            <!--教师编号-->
+            <th data-options="field:'code'">教师编号</th>
+            <?php foreach(range(1,6) as $i):?>
+            <th data-options="field:'pj<?=$i?>',align:'left'
+                ,editor:{type:'checkbox',options:{}}
+            ">评价项目<?=$i?></th>
+            <?php endforeach?>
+            <th data-options="field:'py',align:'left'">评价项目</th>
+        </tr>
+        </thead>
+    </table>
 </div>
-<div style="height: 500px"></div>
 </body>
 </html>
