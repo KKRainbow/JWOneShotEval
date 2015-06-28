@@ -280,7 +280,7 @@ class Jiaowu extends CI_Model{
         curl_setopt($ch,CURLOPT_POST,true);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$teacher['pjform']);
 
-        return curl_exec($ch);
+        return !!curl_exec($ch);
     }
 
     //真怕教务又不在服务端检查教师是否全部评价，所以我们来做这事把= =

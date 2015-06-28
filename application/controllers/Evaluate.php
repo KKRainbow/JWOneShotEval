@@ -32,41 +32,45 @@ class Evaluate extends CI_Controller{
     }
 
     /**
-     * @param $kcdm 课程代码
+     * @param $kcdm string 课程代码
+     * @param $number int 教师编号
+     * @param $pj string 评价列表
+     * @param $py string 评语
+     * @return bool 评价是否成功
      */
-    public function get_teachers($kcdm)
+    public function evalTeacher($kcdm,$number,$pj = "",$py = "")
     {
-        $c = $this->jiaowu->getCourseArray();
-        array_walk($c,function(&$item) use($kcdm)
+        $course = $this->jiaowu->getCourseArray();
+        array_walk($course,function(&$item) use ($number,$pj,$py,$kcdm)
         {
-               if($item['form']['KCDM'] == $kcdm)
-               {
-                   if($this->jiaowu->getTeacherOfCourse($item))
-                   {
-                       echo json_encode($item['teachers']);
-                       exit();
-                   }
-                   exit("0");
-               }
-        });
-        echo false;
-    }
-    public function evalall()
-    {
-        $this->_test();
-
-        $jw = $this->jiaowu;
-        $course = $jw->getCourseArray();
-
-        foreach($course as &$c)
-        {
-            $jw->getTeacherOfCourse($c);
-            foreach($c['teachers'] as &$t)
+            if($item['form']['KCDM'] != $kcdm)return;
+            foreach($item['teachers'] as &$t)
             {
-                $jw->evaluateTeacher($t);
-                $res = $jw->saveTeacher($t);
+                if($t['zgh'] == $number)
+                {
+                    $this->jiaowu->evaluateTeacher($t,array_merge(str_split($pj,1),[$py]));
+                    echo $this->jiaowu->saveTeacher($t);
+                    exit();
+                }
             }
-            $res = $jw->saveCourse($c);
-        }
+        });
+        exit("0");
+    }
+
+    /**
+     * @param $kcdm string 课程代码
+     */
+    public function saveCourse($kcdm)
+    {
+        $course = $this->jiaowu->getCourseArray();
+        array_walk($course,function(&$item) use ($kcdm)
+        {
+            if($item['form']['KCDM'] == $kcdm)
+            {
+                echo $this->jiaowu->saveCourse($item);
+                exit();
+            }
+        });
+        exit("0");
     }
 }
