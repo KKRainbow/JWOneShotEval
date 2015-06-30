@@ -137,36 +137,29 @@
             {
                 var item = buildTeacherItem(course.teachers[i],course);
                 rows.push(item);
-//                $("#grid").datagrid(
-//                    'appendRow',item
-//                );
+                $(document).queue("initGrid",
+                function()
+                {
+                    var i = $(document).queue("initGrid").length - 1;
+                    $("#grid").datagrid(
+                        'appendRow',rows[rows.length - i -1]
+                    );
+                    setTimeout(function()
+                    {
+                        $(document).dequeue("initGrid");
+                    },90)
+                });
             }
         }
 //        $("#grid").datagrid(
 //            'hideColumn', "code"
 //        );
 
-        $("#grid").datagrid(
-            "loadData",
-            rows
-        );
-        initStyles();
-
+        $(document).queue("initGrid",initStyles);
+        $(document).dequeue("initGrid");
     }
     $(function(){
-        $.messager.progress(
-            {
-                title:"请稍后",
-                msg: "正在加载数据"
-            }
-        );
-        setTimeout(function()
-        {
-            initGrid(json);
-            $.messager.progress(
-                'close'
-            );
-        },200);
+        initGrid(json);
     });
     function getCourseByKCDM(kcdm)
     {
