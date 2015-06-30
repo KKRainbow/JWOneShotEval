@@ -11,6 +11,8 @@ define("ROOT","http://10.200.21.61:7001/ieas2.1");//统一认证的HOST
 define("CURL_TIMEOUT" , 10);
 class Connection extends CI_Model{
     private $cookie;
+    private $cacheFile;
+    private $cache = null;
     private $curl = null;
     public $login = null;
     public function _setFields()
@@ -24,15 +26,30 @@ class Connection extends CI_Model{
         {
             show_error("COOKIE目录无法写入！！！",503);
         }
-        //检查Cookie是否已经存在
+
         $this->cookie = COOKIE_DIR  . $hash;
-        if(!file_exists($this->cookie) )
+        $this->cacheFile = COOKIE_DIR  . $hash . ".cache";
+        //检查Cookie是否已经存在
+        //载入Cache文件
+        $filesToCheck = [$this->cookie,$this->cacheFile];
+        foreach($filesToCheck as $file)
         {
-            file_put_contents($this->cookie,"");
+            if(!file_exists($file) )
+            {
+                file_put_contents($file,"");
+            }
+            if(!file_exists($file) || !is_writable($file))
+            {
+                show_error("无法写入文件" . $file,503);
+            }
         }
-        if(!file_exists($this->cookie) || !is_writable($this->cookie))
+
+        //载入cache
+        $this->cache = json_decode(file_get_contents($this->cacheFile),true);
+        //看是不是第一次创建的cache
+        if(!isset($this->cache['time']))
         {
-            show_error("无法写入COOKIE文件",503);
+            $this->cache['time'] = time();
         }
 
         //设置入口地址,目前只使用一个入口
@@ -89,6 +106,7 @@ class Connection extends CI_Model{
     public function __destruct()
     {
         curl_close($this->curl);
+        file_put_contents($this->cacheFile,json_encode($this->cache));
     }
 
     public function destroySession()
@@ -101,6 +119,17 @@ class Connection extends CI_Model{
                 @unlink(COOKIE_DIR . $_SESSION['hash']);
             }
         }
+    }
+
+    public function loadCache($key)
+    {
+        if(!isset($this->cache['data'][$key]))
+            return null;
+        return $this->cache['data'][$key];
+    }
+    public function setCache($key,$data)
+    {
+        $this->cache['data'][$key] = $data;
     }
 
     public function getCookieContent()

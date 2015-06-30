@@ -137,10 +137,8 @@ class Jiaowu extends CI_Model{
         }
         return true;
     }
-    public function getCourseArray()
+    private function _getCoursesFromJW()
     {
-        if($this->courses != null)return $this->courses;
-
         $ch = $this->connection->getCurlPointer();
         curl_setopt($ch,CURLOPT_URL,$_SESSION['root'] . self::$url_courses_list);
         $course_html = Connection::getResponsBody($ch);
@@ -160,7 +158,7 @@ class Jiaowu extends CI_Model{
             echo "没有可以评价的课程";
         }
 
-
+        $courseArray = [];
         //匹配到的就是json字符串。
         foreach($matches[1] as $index => $json_str)
         {
@@ -185,12 +183,29 @@ class Jiaowu extends CI_Model{
             }
             else
             {
-                 $course['form']['name']  = "未命名";
+                $course['form']['name']  = "未命名";
             }
 
             $this->getTeacherOfCourse($course);
-            $this->courses[]  = $course;
+            $courseArray[]  = $course;
         }
+        return $courseArray;
+    }
+    private function _storeCourseInCache()
+    {
+        $this->connection->setCache('courses',$this->courses);
+    }
+    public function clearCache()
+    {
+        $this->connection->setCache('courses',null);
+    }
+    public function getCourseArray()
+    {
+        $this->courses = $this->connection->loadCache("courses");
+        if($this->courses != null)return $this->courses;
+
+        $this->courses = $this->_getCoursesFromJW();
+        $this->_storeCourseInCache();
         return $this->courses;
     }
 
@@ -265,7 +280,7 @@ class Jiaowu extends CI_Model{
 
 
     //保存所有教师，但是不保存课程，因为一旦保存课程就没法改了0 0
-    public function saveTeacher($teacher)
+    public function saveTeacher(&$teacher)
     {
         if(!isset($teacher['pjform']))//还没有评价，保存个毛线
         {
@@ -280,7 +295,10 @@ class Jiaowu extends CI_Model{
         curl_setopt($ch,CURLOPT_POST,true);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$teacher['pjform']);
 
-        return !!curl_exec($ch);
+        $res = !!curl_exec($ch);
+        $this->_getTeacherPj($teacher); //重新获取评价，保持与教务网同步
+        $this->_storeCourseInCache();
+        return $res;
     }
 
     //真怕教务又不在服务端检查教师是否全部评价，所以我们来做这事把= =
@@ -301,6 +319,10 @@ class Jiaowu extends CI_Model{
             . "?rwh=" . $course['form']['JXBH']);
         curl_exec($ch);
 
-        return curl_getinfo($ch,CURLINFO_HTTP_CODE) == 200;
+        $res = (curl_getinfo($ch,CURLINFO_HTTP_CODE) == 200);
+        //不跟教务同步，开销实在太大
+        if($res)$course['form']['SFPJ'] = "1";
+        $this->_storeCourseInCache();
+        return $res;
     }
 }
