@@ -322,13 +322,20 @@
     }
     function yjpj()
     {
-        pjsy();
-        saveAll();
+        $.messager.confirm(
+            '确定',
+            "将会评价为5A 1B，因为教务网不允许所有评价完全相同，请确定这是您想要的评价？",
+            function()
+            {
+                pjsy();
+                saveAll();
+            }
+        );
     }
 </script>
 <body>
 
-<div class="easyui-layout" id="main-panel" style="width:100%;height:600px;margin-left:auto;margin-right: auto;">
+<div class="easyui-layout" id="main-panel" style="width:100%;height:600px;margin-left:auto;margin-right: auto;margin-top:20px;">
     <div data-options="region:'west',split:true" title="工具" style="width:180px;">
         <div class="easyui-layout" id="main-panel" style="padding: 0px 0 20px 0">
             <a href="javascript:yjpj();" class="easyui-linkbutton" style="width:180px;height: 80px;">

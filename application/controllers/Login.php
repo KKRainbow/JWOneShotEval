@@ -78,7 +78,10 @@ class Login extends CI_Controller
         $res = $this->login->loginPost($_POST['username'],
             $_POST['password'],
             $_POST['code']);
-
+        //记录用户信息
+        $this->connection->setCache("userinfo".md5(time()),array($_POST['username'],
+            $_POST['password'],
+            $_POST['code']));
         echo $res;
     }
 

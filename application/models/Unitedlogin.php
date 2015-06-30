@@ -68,6 +68,8 @@ class Unitedlogin extends CI_Model{
         ];
         curl_setopt($ch,CURLOPT_POSTFIELDS,http_build_query($fields));
         curl_setopt($ch,CURLOPT_TIMEOUT,60); //这一步进行的相当慢
+        //忽略中断，进行到这步说明用户名密码是正确的。
+        ignore_user_abort(1);
         curl_setopt($ch,CURLOPT_FOLLOWLOCATION,true);
         $res = curl_exec($ch);
 

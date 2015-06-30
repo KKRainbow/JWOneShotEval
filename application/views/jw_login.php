@@ -23,12 +23,13 @@
             }
 
             var msg = action.substr(-1) == "0" ? "请稍后。。。":
-                "统一认证入口相当慢，请耐心等待。。。";
+                "统一认证入口身份验证成功，正在授权给教务系统，这一步相当慢，请耐心等待。。。";
 
             $.messager.progress(
                 {
                     title: "正在登录",
-                    msg: msg
+                    msg: msg,
+                    interval:"3000"
                 }
             );
 
@@ -74,25 +75,30 @@
             {
                 $("#loginform").attr("action" , post + 0);
                 $("#captcha").attr("src",captcha + 0);
+                $("#loginimg").attr("src","/static/pic/normal.png");
 
             }).select();
             $("#entry1").click(function()
             {
                 $("#loginform").attr("action" , post + 1);
                 $("#captcha").attr("src",captcha + 1);
+                $("#loginimg").attr("src","/static/pic/united.png");
             });
+
         });
     </script>
 
 </head>
 <body>
 <style>
-    #loginform
+    #loginform{
+        margin-top : 4%;
+    }
+    #loginform,#loginimage
     {
         width: 400px;
         margin-left: auto;
         margin-right: auto;
-        margin-top : 10%;
     }
     #logintable label
     {
@@ -114,7 +120,7 @@
 </style>
 <form id="loginform" action="/index.php/login/loginpost/0" method="post" onsubmit="login();return false;">
     <div id="logintable">
-        <div class="easyui-panel" title="Register" style="width:400px;padding:30px 60px">
+        <div class="easyui-panel" title="登录教务系统" style="width:400px;padding:30px 60px;">
             <div style="margin-bottom:20px">
                 <div><label for="username">用户名:</label></div>
                 <input id="username" name="username" type="text" />
@@ -153,11 +159,9 @@
         </div>
     </div>
 </form>
-
-<div id="pic">
-
+<div id="loginimage">
+    <img id="loginimg" src='/static/pic/normal.png' width='400px' height='200px'/>
 </div>
 
 </body>
-
 </html>
