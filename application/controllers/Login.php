@@ -35,6 +35,7 @@ class Login extends CI_Controller
     public function index()
     {
         $this->load->model("jiaowu");
+        $this->jiaowu->clearCache();
         if($this->jiaowu->testHasLoggedIn())
         {
             //已经登录

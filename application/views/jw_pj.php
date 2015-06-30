@@ -27,6 +27,24 @@
     {
         margin-right: 5px;
     }
+
+    .green
+    {
+        color:green;
+    }
+    .green:before
+    {
+
+        content:"已评价";
+    }
+    .red
+    {
+        color:red;
+    }
+    .red:before
+    {
+        content:"未评价";
+    }
 </style>
 <script>
     var json = <?=$course?>;
@@ -61,11 +79,11 @@
     }
     function getSfpjElem(sfpj,id)
     {
-        var sfpj = sfpj == "1" ?
-            "Y"
+        var color = sfpj == "0" ?
+            "red"
             :
-            "N";
-        return "<span id='sfpj_" + id + "'>"+ sfpj +"</span>";
+            "green";
+        return "<span id='sfpj_" + id + "' class='" + color + "'></span>";
     }
     function buildTeacherItem(teacher,course)
     {
@@ -186,7 +204,7 @@
             if(imme)
             {
                 console.log(imme);
-                $(document).dequeue("ajaxRequests");
+//                $(document).dequeue("ajaxRequests");
             }
             return;
         }
@@ -206,7 +224,7 @@
         var complete = true;
         for(var i = 0;i<6 ;i ++ )
         {
-            if(!/[1-3]/.test(pj))
+            if(!/[1-3]/.test(pj[i]))
             {
                 complete = false;
                 break;
@@ -233,7 +251,7 @@
                             if(data == "1")
                             {
                                 //更新表格
-                                $('#sfpj_' + number + kcdm).html("x");
+                                $('#sfpj_' + number + kcdm).attr("class","green");
                             }
                             $(document).dequeue("ajaxRequests");
                         }
@@ -302,17 +320,31 @@
         $(".pjselect").combobox('select',1);
         $("textarea[class=pingyu]").val("您的课让人受益匪浅！");
     }
+    function yjpj()
+    {
+        pjsy();
+        saveAll();
+    }
 </script>
 <body>
-<a href="/index.php/login/logout">退出登录</a>
-<a href="/index.php/evaluate/evalall" class="easyui-linkbutton">一键评价</a>
-<button onclick="saveAll()">评价所有</button>
-<button onclick="initGrid(json)">test</button>
 
-<div id="courses">
-    <table id="grid" class="easyui-datagrid" title="教师列表"
-           style="height: 600px"
-        data-options="
+<div class="easyui-layout" id="main-panel" style="width:100%;height:600px;margin-left:auto;margin-right: auto;">
+    <div data-options="region:'west',split:true" title="工具" style="width:180px;">
+        <div class="easyui-layout" id="main-panel" style="padding: 0px 0 20px 0">
+            <a href="javascript:yjpj();" class="easyui-linkbutton" style="width:180px;height: 80px;">
+                <span style="color: red;font-size:20px;">一键评价</span>
+            </a>
+        </div>
+            <div class="easyui-layout" id="main-panel" style="padding: 00px 0 20px 0">
+            <button onclick="pjsy()" class="easyui-linkbutton" style="width:180px;">填充所有评价</button>
+            <button onclick="saveAll()" class="easyui-linkbutton" style="width:180px;">全部提交(无法撤销）</button>
+            <a href="/index.php/login/logout" class="easyui-linkbutton" style="width:180px;">退出登录</a>
+        </div>
+    </div>
+    <div id="courses" data-options="region:'center',title:'评价列表'">
+        <table id="grid" class="easyui-datagrid" title="教师列表"
+               style="height: 560px"
+               data-options="
             fitColumns:true,
             singleSelect:true,
             groupField : 'cname',
@@ -336,27 +368,28 @@
             return btn + text;
             }
         "
-        >
+            >
 
-        <thead>
-        <tr>
-            <!--是否评价-->
-            <th data-options="field:'sfpj'">已评价</th>
-            <!--课程名称-->
-            <th data-options="field:'cname'" style="width: 30px">课程名称</th>
-            <!--教师编号-->
-            <th data-options="field:'code'">教师编号</th>
-            <!--上课教师-->
-            <th data-options="field:'tname'">上课教师</th>
-            <?php foreach(range(1,6) as $i):?>
-            <th data-options="field:'pj<?=$i?>',align:'left'
+            <thead>
+            <tr>
+                <!--是否评价-->
+                <th data-options="field:'sfpj'">已评价</th>
+                <!--课程名称-->
+                <th data-options="field:'cname'" style="width: 30px">课程名称</th>
+                <!--教师编号-->
+                <th data-options="field:'code'">教师编号</th>
+                <!--上课教师-->
+                <th data-options="field:'tname'">上课教师</th>
+                <?php foreach(range(1,6) as $i):?>
+                    <th data-options="field:'pj<?=$i?>',align:'left'
             ">评价项目<?=$i?></th>
-            <?php endforeach?>
-            <th data-options="field:'py',align:'left',editor:'text'">评语</th>
+                <?php endforeach?>
+                <th data-options="field:'py',align:'left',editor:'text'">评语</th>
 
-        </tr>
-        </thead>
-    </table>
+            </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 </body>
 </html>

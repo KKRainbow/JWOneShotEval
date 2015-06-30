@@ -313,7 +313,7 @@ class Jiaowu extends CI_Model{
         if(count($course['teachers']) == 0)return false;
         foreach($course['teachers'] as &$t)
         {
-            if($t['sfpj'] !== "1")
+            if($t['sfpj'] != "1")
             {
                 return false;
             }
