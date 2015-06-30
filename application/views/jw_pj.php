@@ -137,21 +137,20 @@
             {
                 var item = buildTeacherItem(course.teachers[i],course);
                 rows.push(item);
-                $("#grid").datagrid(
-                    'appendRow',item
-                );
+//                $("#grid").datagrid(
+//                    'appendRow',item
+//                );
             }
         }
-        $("#grid").datagrid(
-            'hideColumn', "code"
-        );
-
-        initStyles();
 //        $("#grid").datagrid(
-//            {
-//                data:rows
-//            }
+//            'hideColumn', "code"
 //        );
+
+        $("#grid").datagrid(
+            "loadData",
+            rows
+        );
+        initStyles();
 
     }
     $(function(){
@@ -181,98 +180,127 @@
         return false;
     }
     //一个递归过程
-    function saveTeachers(kcdm,index)
+    function saveTeachers(kcdm,imme,index)
     {
         if(typeof index == 'undefined')index = 0;
         var course = getCourseByKCDM(kcdm);
         if(!course)return;
 
-        if(index < course.teachers.length)
+        if(index >= course.teachers.length)
         {
-            var teacher = course.teachers[index];
-            var number = teacher.skjs.split('@')[0];
-            var oldrowindex = $("#grid").datagrid(
-                "getRowIndex",number
-            );
-            var pj = [];
-            <?php foreach(range(1,6) as $i):?>
-            pj.push($("input[name=pj_" + number + course.form.KCDM + <?=$i?> + "]").val());
-            <?php endforeach?>
-            var py =$("#py_" + number + course.form.KCDM).val();
-
-            console.log(pj);
-
-            //检查有无未填项
-            var complete = true;
-            for(var i = 0;i<6 ;i ++ )
-            {
-                if(!/[1-3]/.test(pj))
-                {
-                    complete = false;
-                    break;
-                }
-            }
-
-            //班号
-            var kcdm =  course.form.KCDM;
-            var number = number;
-            var pingjia = pj.join("");
-            var pingyu = py;
-            var url = "/index.php/evaluate/evalTeacher/" + kcdm + "/" + number + "/" + pingjia + "/" + pingyu;
-            console.log(url);
-            if(complete)
-            {
-                $.get(
-                    url,
-                    function(data,status)
-                    {
-                        alert("fdsa");
-                        var nextIndex = index;
-                        console.log(data);
-                        if(data == "1")
-                        {
-                            //更新表格
-                            $('#sfpj_' + number + kcdm).html("Y");
-                            nextIndex = index + 1;
-                        }
-                        saveTeachers(kcdm,nextIndex);
-                    }
-                );
-            }
-            else
-            {
-                saveTeachers(kcdm,index+1);
-            }
-
             //提交表单
-        }
-        else
-        {
             //收尾工作。
-//            initStyles();
+            if(imme)
+            {
+                console.log(imme);
+                $(document).dequeue("ajaxRequests");
+            }
+            return;
         }
+
+        var teacher = course.teachers[index];
+        var num = teacher.skjs.split('@')[0];
+
+        var pj = [];
+        <?php foreach(range(1,6) as $i):?>
+        pj.push($("input[name=pj_" + num + course.form.KCDM + <?=$i?> + "]").val());
+        <?php endforeach?>
+        var py =$("#py_" + num + course.form.KCDM).val();
+
+        console.log(pj);
+
+        //检查有无未填项
+        var complete = true;
+        for(var i = 0;i<6 ;i ++ )
+        {
+            if(!/[1-3]/.test(pj))
+            {
+                complete = false;
+                break;
+            }
+        }
+
+        //班号
+        var number = num;
+        var pingjia = pj.join("");
+        var url = "/index.php/evaluate/evalTeacher/" + kcdm + "/" + num + "/" + pingjia + "/" + py;
+        if(complete)
+        {
+            $(document).queue(
+                "ajaxRequests",
+                function()
+                {
+                    var u = url.toString();
+                    console.log(u);
+                    $.get(
+                        u,
+                        function(data,status)
+                        {
+                            console.log(data);
+                            if(data == "1")
+                            {
+                                //更新表格
+                                $('#sfpj_' + number + kcdm).html("x");
+                            }
+                            $(document).dequeue("ajaxRequests");
+                        }
+                    );
+                }
+            );
+        }
+        saveTeachers(kcdm,imme,index + 1);
+//      initStyles();
     }
-    function saveCourse(kcdm)
+    function saveCourse(kcdm,imme)
     {
         if(typeof index == 'undefined')index = 0;
         var course = getCourseByKCDM(kcdm);
         if(!course)return;
 
         var url = "/index.php/evaluate/saveCourse/" + course.form.KCDM;
-        $.get(
-            url,
-            function(data,status)
+        $(document).queue(
+          "ajaxRequests",
+            function()
             {
-                if(data == "1")
-                {
-                    $.messager.show(
+                $.get(
+                    url,
+                    function(data,status)
+                    {
+                        if(data == "1")
                         {
-                            title:"更新成功",
-                            msg:"课程 "+course.form.name + "的评价已经保存，将无法通过教务系统更改"
-                        }
-                    );
+                            $.messager.show(
+                                {
+                                    title:"更新成功",
+                                    msg:"课程 "+course.form.name + "的评价已经保存，将无法通过教务系统更改"
+                                }
+                            );
 
+                        }
+                        $(document).dequeue("ajaxRequests");
+                    }
+                );
+            }
+        );
+        if(imme)
+        {
+            $(document).dequeue("ajaxRequests");
+        }
+    }
+    function saveAll()
+    {
+        $.messager.confirm(
+            '确定',
+            "提交？",
+            function()
+            {
+                for(var i in json)
+                {
+                    var dm = json[i].form.KCDM;
+                    saveTeachers(dm,false);
+                    saveCourse(dm,false);
                 }
+                console.log($(document).queue("ajaxRequests").length);
+                $(document).dequeue("ajaxRequests");
             }
         );
     }
@@ -285,7 +313,8 @@
 <body>
 <a href="/index.php/login/logout">退出登录</a>
 <a href="/index.php/evaluate/evalall" class="easyui-linkbutton">一键评价</a>
-<button onclick="pjsy()">评价所有</button>
+<button onclick="saveAll()">评价所有</button>
+<button onclick="initGrid(json)">test</button>
 
 <div id="courses">
     <table id="grid" class="easyui-datagrid" title="教师列表"
@@ -296,9 +325,6 @@
             groupField : 'cname',
             idField : 'code',
             view : groupview,
-            rowStyler: function(index,row){
-                return 'height:35px;';
-            },
             groupFormatter:function(value,rows){
             var pj = rows[0].course.form.SFPJ == '1'?
             '<font color=\'red\'>课程已评价    </font>'
@@ -309,8 +335,8 @@
                         disable = '';
             var kcdm = rows[0].course.form.KCDM;
             var btn =
-            '<a href=\'javascript:\' class=\'course_btn\''+disable+' onclick=\'saveTeachers(&quot;' + kcdm +'&quot;)\'>保存</a>'
-+           '<a href=\'javascript:\' class=\'submit_btn\''+disable+' onclick=\'saveCourse(&quot;' + kcdm + '&quot;)\'>提交（无法撤销）</a>'
+            '<a href=\'javascript:\' class=\'course_btn\''+disable+' onclick=\'saveTeachers(&quot;' + kcdm +'&quot;,true)\'>保存</a>'
++           '<a href=\'javascript:\' class=\'submit_btn\''+disable+' onclick=\'saveCourse(&quot;' + kcdm + '&quot;,true)\'>提交（无法撤销）</a>'
 
             ;
             var text = pj + value + ' - ' + rows.length + ' Item(s)';

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="925ee9d6-78e9-442c-a8c2-2e593c7c10d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Evaluate.php" afterPath="$PROJECT_DIR$/application/controllers/Evaluate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/jquery.easyui.min.js" afterPath="$PROJECT_DIR$/static/js/jquery.easyui.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/jw_pj.php" afterPath="$PROJECT_DIR$/application/views/jw_pj.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -33,7 +31,7 @@
       <file leaf-file-name="Login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3333335" vertical-offset="1098" max-vertical-offset="1710">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1098" max-vertical-offset="1710">
               <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
               <folding />
             </state>
@@ -53,32 +51,30 @@
       <file leaf-file-name="url_helper.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/system/helpers/url_helper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2962963" vertical-offset="9566" max-vertical-offset="10350">
+            <state vertical-scroll-proportion="0.0" vertical-offset="9566" max-vertical-offset="10350">
               <caret line="531" column="13" selection-start-line="531" selection-start-column="13" selection-end-line="531" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Evaluate.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Evaluate.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Evaluate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5588235" vertical-offset="414" max-vertical-offset="1494">
-              <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+            <state vertical-scroll-proportion="-2.6666667" vertical-offset="882" max-vertical-offset="1494">
+              <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jw_pj.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jw_pj.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/jw_pj.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="4428" max-vertical-offset="6264">
-              <caret line="246" column="17" selection-start-line="246" selection-start-column="17" selection-end-line="246" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.360601" vertical-offset="2988" max-vertical-offset="6732">
+              <caret line="178" column="8" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
               <folding>
-                <element signature="n#style#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1435596368848" expanded="true" signature="2640:2651" placeholder="..." />
+                <marker date="1435636978995" expanded="true" signature="2640:2651" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -87,7 +83,7 @@
       <file leaf-file-name="jw_login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/jw_login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="72" max-vertical-offset="3024">
+            <state vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="3024">
               <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
               <folding />
             </state>
@@ -107,7 +103,7 @@
       <file leaf-file-name="common.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/common.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+            <state vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="180">
               <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
@@ -156,8 +152,8 @@
         <option value="$PROJECT_DIR$/application/config/routes.php" />
         <option value="$PROJECT_DIR$/application/views/jw_login.php" />
         <option value="$PROJECT_DIR$/application/models/Jiaowu.php" />
-        <option value="$PROJECT_DIR$/application/views/jw_pj.php" />
         <option value="$PROJECT_DIR$/application/controllers/Evaluate.php" />
+        <option value="$PROJECT_DIR$/application/views/jw_pj.php" />
       </list>
     </option>
   </component>
@@ -199,7 +195,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -234,6 +229,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -301,7 +297,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23750961" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16986933" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -649,7 +645,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3333335" vertical-offset="1098" max-vertical-offset="1710">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1098" max-vertical-offset="1710">
           <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
           <folding />
         </state>
@@ -667,7 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.9787583" vertical-offset="2263" max-vertical-offset="5508">
           <caret line="300" column="43" selection-start-line="300" selection-start-column="43" selection-end-line="300" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -681,7 +676,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/system/helpers/url_helper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2962963" vertical-offset="9566" max-vertical-offset="10350">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9566" max-vertical-offset="10350">
           <caret line="531" column="13" selection-start-line="531" selection-start-column="13" selection-end-line="531" selection-end-column="13" />
           <folding />
         </state>
@@ -695,23 +690,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/jw_pj.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/Evaluate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="4428" max-vertical-offset="6264">
-          <caret line="246" column="17" selection-start-line="246" selection-start-column="17" selection-end-line="246" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1435596368848" expanded="true" signature="2640:2651" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="-2.6666667" vertical-offset="882" max-vertical-offset="1494">
+          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Evaluate.php">
+    <entry file="file://$PROJECT_DIR$/application/views/jw_pj.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5588235" vertical-offset="414" max-vertical-offset="1494">
-          <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
-          <folding />
+        <state vertical-scroll-proportion="0.360601" vertical-offset="2988" max-vertical-offset="6732">
+          <caret line="178" column="8" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
+          <folding>
+            <marker date="1435636978995" expanded="true" signature="2640:2651" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
