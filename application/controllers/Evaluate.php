@@ -41,6 +41,7 @@ class Evaluate extends CI_Controller{
     public function evalTeacher($kcdm,$number,$pj = "",$py = "")
     {
         $course = $this->jiaowu->getCourseArray();
+        $py = urldecode($py);
         array_walk($course,function(&$item) use ($number,$pj,$py,$kcdm)
         {
             if($item['form']['KCDM'] != $kcdm)return;
@@ -72,5 +73,11 @@ class Evaluate extends CI_Controller{
             }
         });
         exit("0");
+    }
+
+    public function getNewCourse()
+    {
+        $course = $this->jiaowu->getCourseArray();
+        echo json_encode($course);
     }
 }
