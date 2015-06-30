@@ -366,7 +366,7 @@
         </div>
             <div class="easyui-layout" id="main-panel" style="padding: 00px 0 20px 0">
             <button onclick="pjsy()" class="easyui-linkbutton" style="width:180px;">填充所有评价</button>
-            <button onclick="saveAll()" class="easyui-linkbutton" style="width:180px;">全部提交(无法撤销）</button>
+            <button onclick="saveAll()" class="easyui-linkbutton" style="width:180px;">全部提交</button>
             <a href="/index.php/login/logout" class="easyui-linkbutton" style="width:180px;">退出登录</a>
         </div>
     </div>
