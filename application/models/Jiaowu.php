@@ -198,13 +198,18 @@ class Jiaowu extends CI_Model{
     public function clearCache()
     {
         $this->connection->setCache('courses',null);
+        $this->connection->setCache('courses_time',0);
     }
     public function getCourseArray()
     {
-        $this->courses = $this->connection->loadCache("courses");
+        $time = intval($this->connection->loadCache("courses_time"));
+        //5分钟的有效期
+        if(time() - $time > 300)$this->courses = $this->connection->loadCache("courses");
         if($this->courses != null)return $this->courses;
 
         $this->courses = $this->_getCoursesFromJW();
+        $this->connection->setCache('courses_time',time());
+
         $this->_storeCourseInCache();
         return $this->courses;
     }
