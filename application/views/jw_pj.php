@@ -204,7 +204,7 @@
             if(imme)
             {
                 console.log(imme);
-//                $(document).dequeue("ajaxRequests");
+		$(document).dequeue("ajaxRequests");
             }
             return;
         }
