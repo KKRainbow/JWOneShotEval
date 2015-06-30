@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="925ee9d6-78e9-442c-a8c2-2e593c7c10d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Jiaowu.php" afterPath="$PROJECT_DIR$/application/models/Jiaowu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="925ee9d6-78e9-442c-a8c2-2e593c7c10d3" name="Default" comment="" />
     <ignored path="JWAutoEval.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -61,8 +58,8 @@
       <file leaf-file-name="jw_pj.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/jw_pj.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.09015025" vertical-offset="2988" max-vertical-offset="6732">
-              <caret line="169" column="6" selection-start-line="169" selection-start-column="6" selection-end-line="169" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.360601" vertical-offset="2988" max-vertical-offset="6732">
+              <caret line="178" column="8" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
               <folding>
                 <marker date="1435636978995" expanded="true" signature="2640:2651" placeholder="..." />
               </folding>
@@ -712,8 +709,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/jw_pj.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09015025" vertical-offset="2988" max-vertical-offset="6732">
-          <caret line="169" column="6" selection-start-line="169" selection-start-column="6" selection-end-line="169" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.360601" vertical-offset="2988" max-vertical-offset="6732">
+          <caret line="178" column="8" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
           <folding>
             <marker date="1435636978995" expanded="true" signature="2640:2651" placeholder="..." />
           </folding>
