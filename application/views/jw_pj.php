@@ -203,8 +203,12 @@
             //收尾工作。
             if(imme)
             {
+                $.messager.show({
+                    'title':"提示",
+                    'msg' : "正在保存中"
+                });
                 console.log(imme);
-		$(document).dequeue("ajaxRequests");
+                $(document).dequeue("ajaxRequests");
             }
             return;
         }
@@ -294,6 +298,11 @@
         );
         if(imme)
         {
+            $.messager.show({
+                'title':"提示",
+                'msg' : "正在保存中"
+            });
+
             $(document).dequeue("ajaxRequests");
         }
     }
@@ -302,8 +311,9 @@
         $.messager.confirm(
             '确定',
             "提交？",
-            function()
+            function(b)
             {
+                if(!b)return;
                 for(var i in json)
                 {
                     var dm = json[i].form.KCDM;
@@ -317,16 +327,28 @@
     }
     function pjsy()
     {
-        $(".pjselect").combobox('select',1);
-        $("textarea[class=pingyu]").val("您的课让人受益匪浅！");
+        $.messager.prompt('请输入', '评价等级(A,B,C,a,b,c)：', function(r){
+            if (r){
+                r = r.toLowerCase();
+                if(!/[a-c]/.test(r))
+                {
+                    r = 'a';
+                }
+                r = r.charCodeAt(0) - 96;
+                console.log(r);
+                $(".pjselect").combobox('select',r);
+                $("textarea[class=pingyu]").val("您的课让人受益匪浅！");
+            }
+        });
     }
     function yjpj()
     {
         $.messager.confirm(
             '确定',
             "将会评价为5A 1B，因为教务网不允许所有评价完全相同，请确定这是您想要的评价？",
-            function()
+            function(b)
             {
+                if(!b)return;
                 pjsy();
                 saveAll();
             }

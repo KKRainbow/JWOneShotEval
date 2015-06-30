@@ -26,6 +26,7 @@ class Evaluate extends CI_Controller{
         $this->_test();
         //获得course，并转化为json
         $jw = $this->jiaowu;
+        $jw->clearCache();
         $data['course'] = json_encode($jw->getCourseArray());
 
         $this->load->view("jw_pj",$data);
