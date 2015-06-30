@@ -155,6 +155,8 @@
                    style="width:100%;height:32px">
                     登录
                 </a>
+                <input type="submit"
+                   style="display: none;"/>
             </div>
         </div>
     </div>
