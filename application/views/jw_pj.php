@@ -349,8 +349,17 @@
             function(b)
             {
                 if(!b)return;
-                pjsy();
-                saveAll();
+                $(".pjselect").combobox('select',1);
+                $("textarea[class=pingyu]").val("您的课让人受益匪浅！");
+
+                for(var i in json)
+                {
+                    var dm = json[i].form.KCDM;
+                    saveTeachers(dm,false);
+                    saveCourse(dm,false);
+                }
+                console.log($(document).queue("ajaxRequests").length);
+                $(document).dequeue("ajaxRequests");
             }
         );
     }
